@@ -38,6 +38,43 @@ limit 20  ;
 # sorted first by the account ID (in ascending order), and then
 # by the total dollar amount (in descending order).
 
+
+
+# Use the accounts table to find the account name, primary poc,
+#  and sales rep id for all stores except Walmart, Target, and
+#  Nordstrom.
+
+Select name, primary_poc, sales_rep_id from accounts
+where name not in ('Walmart','Target','Nordstrom');
+
+
+# Use the web_events table to find all information regarding
+# individuals who were contacted via any method except using
+#  organic or adwords methods.
+
+Select * from web_events
+where channel not in ('organic','adwords');
+
+
+# Use the account table to find
+
+# All the companies whose names do not start with 'C'.
+
+Select name from accounts
+where name not like ('C%');
+
+
+# All companies whose names do not contain the string 'one'
+# somewhere in the name.
+
+Select name from accounts
+where name not like ('%one%');
+
+
+#  All companies whose names do not end with 's'.
+Select name from accounts
+where name not like ('%s');
+
 Select id, account_id, total_amt_usd
 from orders
 order by account_id asc, total_amt_usd desc;
