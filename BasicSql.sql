@@ -38,6 +38,26 @@ limit 20  ;
 # sorted first by the account ID (in ascending order), and then
 # by the total dollar amount (in descending order).
 
+
+# IN Function usage / Comparasion operator
+
+# 1. Use the accounts table to find the account name,
+#  primary_poc, and sales_rep_id for Walmart, Target,
+#  and Nordstrom.
+
+select name, primary_poc, sales_rep_id
+from accounts
+where name in ('Walmart', 'Target','Nordstrom');
+
+
+# 2. Use the web_events table to find all information
+#  regarding individuals who were contacted via the channel
+#  of organic or adwords.
+
+select * from web_events
+where channel in ('organic','adwords');
+
+
 Select id, account_id, total_amt_usd
 from orders
 order by account_id asc, total_amt_usd desc;
