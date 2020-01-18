@@ -106,3 +106,26 @@ SELECT id, account_id,
    poster_amt_usd/(standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS post_per
 FROM orders
 LIMIT 10;
+
+
+
+# Questions using the LIKE operator
+# Use the accounts table to find
+
+# 1. All the companies whose names start with 'C'.
+
+Select name
+from accounts
+where name like 'C%' ;
+
+# 2. All companies whose names contain the string 'one' 
+#  somewhere in the name.
+
+Select name
+from accounts
+where name like '%one%' ;
+
+# 3. All companies whose names end with 's'.
+Select name
+from accounts
+where name like '%s' ;
