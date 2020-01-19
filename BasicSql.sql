@@ -205,7 +205,7 @@ where name not like 'C%' and name  not like '%s';
 # Then look at your output to see if the BETWEEN operator
 # included the begin and end values or not.
 
-SELECT occurred_at, gloss_qty 
+SELECT occurred_at, gloss_qty
 FROM orders
 WHERE gloss_qty BETWEEN 24 AND 29;
 
@@ -219,3 +219,27 @@ SELECT *
 FROM web_events
 WHERE channel IN ('organic', 'adwords') AND occurred_at BETWEEN '2016-01-01' AND '2017-01-01'
 ORDER BY occurred_at DESC;
+
+# Find list of orders ids where either gloss_qty or poster_qty
+# is greater than 4000. Only include the id field in the resulting
+# table.
+
+Select id
+From orders
+Where gloss_qty > 4000 or poster_qty > 4000;
+
+# Write a query that returns a list of orders where the standard_qty
+# is zero and either the gloss_qty or poster_qty is over 1000.
+
+Select *
+From orders
+Where standard_qty = 0 and  gloss_qty > 1000 or poster_qty > 1000;
+
+# Find all the company names that start with a 'C' or 'W', and the
+# primary contact contains 'ana' or 'Ana', but it doesn't contain 'eana'.
+
+SELECT *
+FROM accounts
+WHERE (name LIKE 'C%' OR name LIKE 'W%')
+           AND ((primary_poc LIKE '%ana%' OR primary_poc LIKE '%Ana%')
+           AND primary_poc NOT LIKE '%eana%');
