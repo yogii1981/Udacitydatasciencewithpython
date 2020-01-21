@@ -127,3 +127,48 @@ Join region r
 on r.id = s.region_id
 where o.standard_qty >100 and  o.poster_qty > 50
 Order by unit_price;
+
+# Provide the name for each region for every order, as
+# well as the account name and the unit price they paid
+# (total_amt_usd/total) for the order. However, you should
+# only provide the results if the standard order quantity
+# exceeds 100 and the poster order quantity exceeds 50. Your
+#  final table should have 3 columns: region name, account name,
+#  and unit price. Sort for the largest unit price first. In order
+# to avoid a division by zero error, adding .01 to the denominator
+# here is helpful (total_amt_usd/(total+0.01).
+
+SELECT r.name region_name,a.name account_name, (total_amt_usd/(total+0.01)) Unit_price
+FROM orders o
+Join accounts a
+On o.account_id = a.id
+Join sales_reps s
+on s.id = a.sales_rep_id
+Join region r
+on r.id = s.region_id
+where o.standard_qty >100 and  o.poster_qty > 50
+Order by unit_price desc;
+
+# What are the different channels used by account id
+# 1001? Your final table should have only 2 columns: account name
+# and the different channels. You can try SELECT DISTINCT to
+# narrow down the results to only the unique values.
+
+SELECT  DISTINCT a.name accountname, w.channel channel
+From web_events w
+Join accounts a
+ON w.account_id = a.id
+where a.id = '1001';
+
+
+# Find all the orders that occurred in 2015. Your final table
+#  should have 4 columns: occurred_at, account name, order total,
+# and order total_amt_usd.
+
+SELECT  o.occurred_at, a.name account_name,o.total ordertotal,
+ o.total_amt_usd order_total_amt_usd
+from orders o
+join accounts a
+on o.account_id = a.id
+where o.occurred_at between '2015-01-01' and '2015-12-31'
+order by o.occurred_at DESC;
