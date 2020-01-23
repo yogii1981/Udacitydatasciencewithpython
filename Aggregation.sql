@@ -199,3 +199,52 @@ SELECT w.channel, count(channel) as total_number_of_timechannelused
 from web_events w
 Group by w.channel;
 
+# 4. Find the total number of times each type of channel from the web_events was used. Your final table should
+# have two columns - the channel and the number of times the channel was used.
+
+SELECT w.channel, count(channel) as total_number_of_timechannelused
+from web_events w
+Group by w.channel;
+
+
+# 5. Who was the primary contact associated with the earliest web_event?
+
+SELECT a.primary_poc
+FROM accounts a
+Join web_events w
+On a.id = w.account_id
+ORDER BY w.occurred_at 
+LIMIT 1;
+
+# 6.What was the smallest order placed by each account in terms of total usd. 
+# Provide only two columns - the account name and the total usd. Order from 
+# smallest dollar amounts to largest.
+
+SELECT a.name, MIN(total_amt_usd) smallest_order
+FROM accounts a
+JOIN orders o
+ON a.id = o.account_id
+GROUP BY a.name
+ORDER BY smallest_order;
+
+
+# Find the number of sales reps in each region. Your final table 
+# should have two columns - the region and the number of sales_reps.
+#  Order from fewest reps to most reps.
+
+Select r.name as region_name, s.id
+from region r
+join sales_reps s
+on r.id = s.region_id
+group by r.name;
+
+# or this approach
+Select r.name as region_name,count(s.id) as num_reps
+from region r
+join sales_reps s
+on r.id = s.region_id
+group by r.name
+order by num_reps;
+
+
+
