@@ -1,27 +1,27 @@
 # Find the number of events occured at each channel on each day
 
-   Select Date_Trunc('Day', occurred_at) as day, channel, count(*) as event_count
-   from web_events
-   group by 1,2 
-   order by 1;
+  SELECT DATE_TRUNC('day',occurred_at) AS day,
+   channel, COUNT(*) as events
+FROM web_events
+GROUP BY 1,2
+ORDER BY 3 DESC;
    
  # create a subquery which brings all the data from the previous query results
-      Select * 
-     from
-      (Select Date_Trunc('Day', occurred_at) as day, channel, count(*) as event_count
-      from web_events
-      group by 1,2 
-      order by 1) sub
+     SELECT *
+     FROM (SELECT DATE_TRUNC('day',occurred_at) AS day,
+           channel, COUNT(*) as events
+     FROM web_events 
+     GROUP BY 1,2
+     ORDER BY 3 DESC) sub;
       
       
-  # Find the aggregate number of events of each channel. Since your brak out day earlier, it is giving 
+  # Find the aggregate number of events of each channel. Since your break out day earlier, it is giving 
   # average per day
   
-       Select channel, avg(event_count) as Average_event_count 
-     from
-      (Select Date_Trunc('Day', occurred_at) as day, channel, count(*) as event_count
-      from web_events
-      group by 1,2 
-      order by 1) sub
-      group by 1
-      order by 2 desc
+       SELECT channel, AVG(events) AS average_events
+FROM (SELECT DATE_TRUNC('day',occurred_at) AS day,
+             channel, COUNT(*) as events
+      FROM web_events 
+      GROUP BY 1,2) sub
+GROUP BY channel
+ORDER BY 2 DESC;
