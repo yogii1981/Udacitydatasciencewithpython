@@ -45,3 +45,25 @@ SELECT COUNT(year) AS year,
 # Write a query to calculate the average opening price (hint: you will need to use both COUNT and SUM, as well as some simple arithmetic.).
 SELECT SUM(open)/COUNT(open) AS avg_open_price
   FROM tutorial.aapl_historical_stock_price 
+  
+  
+ # query to write minimum price of apple at the
+  SELECT min(low)
+  FROM tutorial.aapl_historical_stock_price
+
+
+# What was Apple's lowest stock price (at the time of this data collection)?
+SELECT min(low)
+FROM tutorial.aapl_historical_stock_price
+group by date
+order by date DESC
+limit 1
+
+
+# What was the highest single-day increase in Apple's share value?
+SELECT MAX(close - open)
+  FROM tutorial.aapl_historical_stock_price
+
+# What was the highest difference of share value in a day 
+Select MAX(high -low)
+FROM tutorial.aapl_historical_stock_price
