@@ -21,3 +21,7 @@ SELECT count(*) FROM tutorial.aapl_historical_stock_price
 # write a query to find the order qunatity from each account along with amount in usd
 SELECT account_id, sum(quantity),sum(amount_usd) FROM tutorial.orders
 group by account_id;
+
+# The following code will provide a count of all of rows in which the high column is not null.
+SELECT COUNT(high)
+  FROM tutorial.aapl_historical_stock_price
