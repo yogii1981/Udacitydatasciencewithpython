@@ -92,7 +92,7 @@ SELECT MAX(close - open)
 Select MAX(high -low)
 FROM tutorial.aapl_historical_stock_price
 
- Write a query to calculate the average daily price change in Apple stock, grouped by year.
+ #Write a query to calculate the average daily price change in Apple stock, grouped by year.
  
  Select AVG(close-open), year
  from tutorial.aapl_historical_stock_price
@@ -100,8 +100,20 @@ FROM tutorial.aapl_historical_stock_price
  order by year
 
 
- Write a query that calculates the lowest and highest prices that Apple stock achieved each month.
+ #Write a query that calculates the lowest and highest prices that Apple stock achieved each month.
  Select year, month, min(low), max(high)
  from tutorial.aapl_historical_stock_price
  group by year,month
  order by year,month
+ 
+ # After all, there are a lot of months in this dataset. Instead, you might want to find every month during
+ # which AAPL stock worked its way over $400/share. The WHERE clause won't work for this because it doesn't
+ # allow you to filter on aggregate columns—that's where the HAVING clause comes in:
+
+SELECT year,
+       month,
+       MAX(high) AS month_high
+  FROM tutorial.aapl_historical_stock_price
+ GROUP BY year, month
+HAVING MAX(high) > 400
+ ORDER BY year, month
