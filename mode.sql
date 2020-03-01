@@ -26,6 +26,14 @@ group by account_id;
 SELECT COUNT(high)
   FROM tutorial.aapl_historical_stock_price
   
+# Calculate the total number of shares traded each month. Order your results chronologically.
+SELECT year,
+      month,
+      COUNT(*) AS count
+ FROM tutorial.aapl_historical_stock_price
+GROUP BY year, month
+
+  
   
 # write a query for historical price , number of instances
 SELECT year,
