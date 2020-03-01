@@ -154,4 +154,10 @@ SELECT year, month,
   FROM tutorial.aapl_historical_stock_price
  GROUP BY year, month
  ORDER BY 3 DESC                                     
-                                     
+    
+# Write a query that counts the number of unique values in the month column for each year.
+SELECT year,
+       COUNT(DISTINCT month) AS months_count
+  FROM tutorial.aapl_historical_stock_price
+ GROUP BY year
+ ORDER BY year
