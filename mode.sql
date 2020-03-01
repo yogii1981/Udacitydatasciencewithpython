@@ -26,6 +26,7 @@ group by account_id;
 SELECT COUNT(high)
   FROM tutorial.aapl_historical_stock_price
   
+   
 # Calculate the total number of shares traded each month. Order your results chronologically.
  SELECT year,
        month,
@@ -117,3 +118,14 @@ SELECT year,
  GROUP BY year, month
 HAVING MAX(high) > 400
  ORDER BY year, month
+ 
+ # Query clause order
+# As mentioned in prior lessons, the order in which you write the clauses
+# is important. Here's the order for everything you've learned so far:
+
+# SELECT
+# FROM
+# WHERE
+# GROUP BY
+# HAVING
+# ORDER BY
