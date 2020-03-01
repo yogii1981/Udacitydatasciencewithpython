@@ -26,6 +26,11 @@ group by account_id;
 SELECT COUNT(high)
   FROM tutorial.aapl_historical_stock_price
   
+Write a query that returns the unique values in the year column, in chronological order.
+Select distinct year
+from tutorial.aapl_historical_stock_price
+order by year 
+  
    
 # Calculate the total number of shares traded each month. Order your results chronologically.
  SELECT year,
