@@ -140,3 +140,18 @@ HAVING MAX(high) > 400
 # GROUP BY
 # HAVING
 # ORDER BY
+
+# write a query to count toral number of unique months and total number of months
+SELECT COUNT(Distinct year) ,
+       COUNT(Distinct month),
+       (COUNT(Distinct year) * COUNT(Distinct month)) as total_months
+  FROM tutorial.aapl_historical_stock_price
+  
+# Average trade volumes by month to get a sense of when Apple stock really moves:
+
+SELECT year, month,
+       AVG(volume) AS avg_trade_volume
+  FROM tutorial.aapl_historical_stock_price
+ GROUP BY year, month
+ ORDER BY 3 DESC                                     
+                                     
