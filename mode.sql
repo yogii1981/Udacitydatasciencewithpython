@@ -165,4 +165,21 @@ SELECT year,
 # Write a query that separately counts the number of unique values in the month column and the number of unique values in the `year` column.
 SELECT COUNT(DISTINCT year) AS years_count,
       COUNT(DISTINCT month) AS months_count
-  FROM tutorial.aapl_historical_stock_price                                     
+  FROM tutorial.aapl_historical_stock_price      
+                                     
+                                     
+# The CASE statement is followed by at least one pair of 
+# WHEN and THEN statements—SQL's equivalent of IF/THEN in Excel. 
+# Because of this pairing, you might be tempted to call this SQL 
+# CASE WHEN, but CASE is the accepted term.
+
+# Every CASE statement must end with the END statement. 
+# The ELSE statement is optional, and provides a way to capture 
+# values not specified in the WHEN/THEN statements. CASE is easiest 
+# to understand in the context of an example:
+
+   SELECT player_name,
+          year,
+          CASE WHEN year = 'SR' THEN 'yes'
+               ELSE NULL END AS is_a_senior
+     FROM benn.college_football_players
