@@ -91,3 +91,10 @@ SELECT MAX(close - open)
 # What was the highest difference of share value in a day 
 Select MAX(high -low)
 FROM tutorial.aapl_historical_stock_price
+
+ Write a query to calculate the average daily price change in Apple stock, grouped by year.
+ 
+ Select AVG(close-open), year
+ from tutorial.aapl_historical_stock_price
+ group by year
+ order by year
