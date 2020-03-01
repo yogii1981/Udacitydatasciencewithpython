@@ -26,6 +26,12 @@ group by account_id;
 SELECT COUNT(high)
   FROM tutorial.aapl_historical_stock_price
   
+# write a query to count toral number of unique months and total number of months
+SELECT COUNT(Distinct year) ,
+       COUNT(Distinct month),
+       (COUNT(Distinct year) * COUNT(Distinct month)) as total_months
+  FROM tutorial.aapl_historical_stock_price
+  
 Write a query that returns the unique values in the year column, in chronological order.
 Select distinct year
 from tutorial.aapl_historical_stock_price
