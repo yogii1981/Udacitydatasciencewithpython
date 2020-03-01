@@ -27,6 +27,21 @@ SELECT COUNT(high)
   FROM tutorial.aapl_historical_stock_price
   
   
+# write a query for historical price , number of instances
+SELECT year,
+      COUNT(*) AS count
+ FROM tutorial.aapl_historical_stock_price
+GROUP BY year
+
+# write a query for year, month , and number of transaction
+SELECT year,
+      month,
+      COUNT(*) AS count
+ FROM tutorial.aapl_historical_stock_price
+GROUP BY year, month
+
+  
+  
   
  # query to count non-numerical data   
 SELECT COUNT(date)
