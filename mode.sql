@@ -183,3 +183,13 @@ SELECT COUNT(DISTINCT year) AS years_count,
           CASE WHEN year = 'SR' THEN 'yes'
                ELSE NULL END AS is_a_senior
      FROM benn.college_football_players
+                                     
+  # Write a query that includes a column that is flagged "yes" when
+  # a player is from California, and sort the results with those players first.
+  
+  SELECT player_name,
+        state,
+        CASE WHEN state = 'CA' THEN 'yes'
+            ELSE NULL END AS PLAYER_FROM_CALIFORNIA
+            FROM benn.college_football_players
+            ORDER BY PLAYER_FROM_CALIFORNIA ASC
