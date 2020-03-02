@@ -193,3 +193,65 @@ SELECT COUNT(DISTINCT year) AS years_count,
             ELSE NULL END AS PLAYER_FROM_CALIFORNIA
             FROM benn.college_football_players
             ORDER BY PLAYER_FROM_CALIFORNIA ASC
+
+                                     
+                                     SELECT player_name,
+          weight,
+          CASE WHEN weight > 250 THEN 'over 250'
+                WHEN weight > 200 THEN '201-250'
+                WHEN weight > 175 THEN '176-200'
+                ELSE '175 or under' END AS weight_group
+FROM benn.college_football_players
+
+
+# BETTER multipke case statement
+SELECT player_name,
+       weight,
+       CASE WHEN weight > 250 THEN 'over 250'
+            WHEN weight > 200 AND weight <= 250 THEN '201-250'
+            WHEN weight > 175 AND weight <= 200 THEN '176-200'
+            ELSE '175 or under' END AS weight_group
+  FROM benn.college_football_players
+
+
+# Write a query that includes players' names and a column
+# that classifies them into four categories based on height.
+#  Keep in mind that the answer we provide is only one of many
+# possible answers, since you could divide players' heights in many ways.
+
+SELECT player_name,
+       height,
+       CASE WHEN height > 74 THEN 'over 74'
+            WHEN height > 72 AND height <= 74 THEN '73-74'
+            WHEN height > 70 AND height <= 72 THEN '71-72'
+            ELSE 'under 70' END AS height_group
+  FROM benn.college_football_players
+
+
+# Using CASE with aggregate functions
+# CASE's slightly more complicated and substantially more useful
+#  functionality comes from pairing it with aggregate functions.
+# For example, let's say you want to only count rows that fulfill a
+#  certain condition. Since COUNT ignores nulls, you could use a CASE
+# statement to evaluate the condition and produce null or non-null values
+#  depending on the outcome:
+
+SELECT CASE WHEN year = 'FR' THEN 'FR'
+            ELSE 'Not FR' END AS year_group,
+            COUNT(1) AS count
+  FROM benn.college_football_players
+ GROUP BY CASE WHEN year = 'FR' THEN 'FR'
+               ELSE 'Not FR' END
+
+#But what if you also wanted to count a couple other conditions?
+# Using the WHERE clause only allows you to count one condition.
+#Here's an example of counting multiple conditions in one query:
+
+SELECT CASE WHEN year = 'FR' THEN 'FR'
+            WHEN year = 'SO' THEN 'SO'
+            WHEN year = 'JR' THEN 'JR'
+            WHEN year = 'SR' THEN 'SR'
+            ELSE 'No Year Data' END AS year_group,
+            COUNT(1) AS count
+  FROM benn.college_football_players
+ GROUP BY 1
